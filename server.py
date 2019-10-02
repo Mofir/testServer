@@ -5,7 +5,7 @@ my_port = 19237
 
 @app.route('/', methods=['GET'])
 def get_html():
-    return render_template('./dht.html')
+    return render_template('./index.html')
 
 @app.route('/dht', methods=['POST'])
 def update_dht():
