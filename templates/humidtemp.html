@@ -16,14 +16,13 @@
 	</script>
 	
 </head>
-<body>
+<body onload="updateDht('/dht', 'data')>
 	<div class="Navbar"><span>Real-time chart</span></div>
 	<div class="wrapper">
 		<div id="chart"></div>
 		<script type="text/javascript">
 			function getData(){
-				target.innerHTML = `${sensorData}`
-				return { { sensorData } }
+				return 'data';
 			}
 
 			Plotly.plot('chart',[{
