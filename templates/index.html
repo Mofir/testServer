@@ -3,16 +3,27 @@
 <head>
 	<title>テストアプリ</title>
 	<script type="text/javascript">
-		const updateDht = async(url, element) => {
+		const updateDht = async(url, elemente) => {
 			const sensorData = await fetch(url)
 									 .then(response => response.text())
+			//const res = sensorData.split(',')
 			const target = document.getElementById(element)
+			//const time_target = document.getElementById(time)
+			//const humid_target = document.getElementById(humidity)
+			//const temp_target = document.getElementById(temperature)
 			target.innerHTML = `<h1>${sensorData}</h1>`
+			//time_target.innerHTML = `Time: ${res[1]}`
+			//humid_target.innerHTML = `Humidity: ${res[2]}`
+			//temp_target.innerHTML = `Temperature: ${res[3]}`
+
 		}
 	</script>
 </head>
 <body onload="updateDht('/dht', 'data')">
 	<div id="data">test</div>
-	<inPost type="button" value="更新" onClick="updateDht('/dht','data')">
+	<p id="time">Time: {{time}}</p>
+	<p id="humidity">Humidity: {{humidity}}</p>
+	<p id="temperature">Temperature: {{temperature}}</p>
+	<input type="button" value="更新" onClick="reload">
 </body>
 </html>
