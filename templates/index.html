@@ -3,27 +3,62 @@
 <head>
 	<title>テストアプリ</title>
 	<script type="text/javascript">
-		const updateDht = async(url, elemente) => {
+		const updateDht = async(url, time, humidity, temperature) => {
 			const sensorData = await fetch(url)
 									 .then(response => response.text())
-			//const res = sensorData.split(',')
+			//sensorData.split(',')
 			const target = document.getElementById(element)
-			//const time_target = document.getElementById(time)
-			//const humid_target = document.getElementById(humidity)
-			//const temp_target = document.getElementById(temperature)
+			//time_target = document.getElementById(time)
+			//humid_target = document.getElementById(humidity)
+			//temp_target = document.getElementById(temperature)
+			
 			target.innerHTML = `<h1>${sensorData}</h1>`
-			//time_target.innerHTML = `Time: ${res[1]}`
-			//humid_target.innerHTML = `Humidity: ${res[2]}`
-			//temp_target.innerHTML = `Temperature: ${res[3]}`
-
+			//time_target.innerHTML = `Time: ${sensorData[0]}`
+			//humid_target.innerHTML = `Humidity: ${sensorData[1]}`
+			//temp_target.innerHTML = `Temperature: ${sensorData[2]}`
+			//<p id="time">{{time}}</p>
+			//<p id="humidity">Humidity: {{humidity}}</p>
+			//<p id="temperature">Temperature: {{temperature}}</p>
 		}
 	</script>
 </head>
 <body onload="updateDht('/dht', 'data')">
+	<div class="title">Welcome to Software Engineering Lab</div>
 	<div id="data">test</div>
-	<p id="time">Time: {{time}}</p>
-	<p id="humidity">Humidity: {{humidity}}</p>
-	<p id="temperature">Temperature: {{temperature}}</p>
-	<input type="button" value="更新" onClick="reload">
+	<p id="time">{{values[0]}}</p>
+	<p id="humidity">Humidity: {{values[1]}}</p>
+	<p id="temperature">Temperature: {{values[2]}}</p>
+	<input type="button" value="更新" onClick="updateDht('/dht', 'data')">
 </body>
+
+<style type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+
+body{
+	background-color: black;
+}
+
+div{
+	text-align: center;
+	color: #e35604;
+	font-size: 24px;
+}
+
+p{
+	margin: 0 auto;
+	padding: 10px 10px 10px 10px;
+	text-align: center;
+	color: #e35604;
+	font-size: 26px;
+	font-family:'Roboto', sans-serif;
+	font-size: bold;
+}
+
+div + .title{
+	text-align: center;
+	padding-bottom: 20px;
+	color: blue;
+	font-size: 30px;
+}
+</style>
 </html>
