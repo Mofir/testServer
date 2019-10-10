@@ -47,4 +47,4 @@ def get_dht():
         f.close()
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=my_port)
+    app.run(debug=True, host='160.16.210.86', port=my_port)
