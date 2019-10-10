@@ -2,8 +2,7 @@
 <html>
 <head>
 	<title>テストアプリ</title>
-	<script type="text/javascript">
-		function refresh(){ 
+	<script type="text/javascript"> 
 		const updateDht = async(url, time, humidity, temperature) => {
 			const sensorData = await fetch(url)
 									 .then(response => response.text())
@@ -21,22 +20,17 @@
 			//<p id="humidity">Humidity: {{humidity}}</p>
 			//<p id="temperature">Temperature: {{temperature}}</p>
 			}
-		}
-		function init(){
-			refresh()
-			var int = self.setInterval(function(){
-				refresh()
-			}, 3000);
-		}
+		
 	</script>
+	<meta http-equiv="refresh" content="6">
 </head>
-<body onload="updateDht('/dht', 'data')">
+<body onload="updateDht('/dht', 'time', 'humidity', 'temperature')">
 	<div class="title">Welcome to Software Engineering Lab</div>
 	<div id="data">test</div>
 	<p id="time">{{values[0]}}</p>
 	<p id="humidity">Humidity: {{values[1]}}</p>
 	<p id="temperature">Temperature: {{values[2]}}</p>
-	<input type="button" value="更新" onClick="updateDht('/dht', 'data')">
+	<input type="button" value="更新" onClick="updateDht('/dht', 'time', 'humidity', 'temperature')">
 </body>
 
 <style type="text/css">
