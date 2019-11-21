@@ -3,6 +3,7 @@ app = Flask(__name__)
 file_path = "./humidity_data.csv"
 my_port = 19237
 
+#return HTML 
 @app.route('/', methods=['GET'])
 def get_html():
     try:
@@ -17,6 +18,7 @@ def get_html():
     values = dht.split(',')
     return render_template('./index.html', values=values)
 
+#receive sensor data 
 @app.route('/dht', methods=['POST'])
 def update_dht():
     time = request.form["time"]
@@ -34,6 +36,7 @@ def update_dht():
         f.close()
     return get_html()
 
+#reading and retrieve sensor data
 @app.route('/dht', methods=['GET'])
 def get_dht():
     try:
