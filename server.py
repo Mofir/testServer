@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template
 import csv
 app = Flask(__name__)
-file_path = "./humidity_data.csv"
+file_path = "./dht_data.csv"
 my_port = 19237
 
 #return HTML 
@@ -19,18 +19,14 @@ def get_html():
     values = dht.split(',')
     return render_template('./index.html', values=values)
 
-#write data in csv file 
-def write_csv(values):
-    #values = dht.split(',')
-    with open('dht.csv', 'a') as outfile:
-        writer = csv.writer(outfile)
-        writer.writerows(values)
-
 #receive sensor data 
 @app.route('/dht', methods=['POST'])
 def update_dht():
-    time = request.form["time"]
-    dht = request.form["dht"]
+    try:
+        time = request.form["time"]
+        dht = request.form["dht"]
+    except Exception as e:
+        return "paramater is incorrect"
     #humidity = request.form["humidity"]
     #temperature = request.form["temperature"]
     try:
@@ -57,7 +53,10 @@ def get_dht():
         return e
     finally:
         f.close()
-
+    values = dht.split(',')
+    with open('./dht_data.csv', 'a') as outfile:
+        writer = csv.writer(outfile)
+        writer.writerows(values)
 
 
 if __name__ == '__main__':
