@@ -53,10 +53,11 @@ def get_dht():
         return e
     finally:
         f.close()
-    values = dht.split(',')
+
+def write_csv():
     with open('./dht_data.csv', 'a') as outfile:
         writer = csv.writer(outfile)
-        writer.writerows(values)
+        writer.writerows([get_dht()])
 
 
 if __name__ == '__main__':
