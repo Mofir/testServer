@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template
+import csv
 app = Flask(__name__)
 file_path = "./humidity_data.csv"
 my_port = 19237
@@ -17,6 +18,13 @@ def get_html():
        f.close()
     values = dht.split(',')
     return render_template('./index.html', values=values)
+
+#write data in csv file 
+def write_csv(values):
+    #values = dht.split(',')
+    with open('dht.csv', 'a') as outfile:
+        writer = csv.writer(outfile)
+        writer.writerows(values)
 
 #receive sensor data 
 @app.route('/dht', methods=['POST'])
@@ -49,6 +57,8 @@ def get_dht():
         return e
     finally:
         f.close()
+
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=my_port)
