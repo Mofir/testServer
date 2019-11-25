@@ -54,10 +54,10 @@ def get_dht():
     finally:
         f.close()
 
-def write_csv():
-    with open('./dht_data.csv', 'a') as outfile:
-        writer = csv.writer(outfile)
-        writer.writerows([get_dht()])
+def create_csv():
+    with open('dht_data.csv', 'w') as new_file:
+        csv_writer = csv.writer(new_file)
+        csv_writer.writerow([get_dht()])
 
 
 if __name__ == '__main__':
